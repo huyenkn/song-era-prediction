@@ -6,7 +6,6 @@ from collections import defaultdict
 from collections import Counter
 import numpy as np
 
-# deliverable 3.1
 def get_corpus_counts(x,y,label):
     """Compute corpus counts of words for all documents with a given label.
 
@@ -25,7 +24,6 @@ def get_corpus_counts(x,y,label):
 
     #raise NotImplementedError
 
-# deliverable 3.2
 def estimate_pxy(x,y,label,smoothing,vocab):
     '''
     Compute smoothed log-probability P(word | label) for a given label.
@@ -48,7 +46,6 @@ def estimate_pxy(x,y,label,smoothing,vocab):
         vocab_dict[word] = np.log(vocab_dict[word]/(sum(corpus_dict.values()) + smoothing*len(vocab)))
     return vocab_dict
 
-# deliverable 3.3
 def estimate_nb(x,y,smoothing):
     """estimate a naive bayes model
 
@@ -81,7 +78,6 @@ def estimate_nb(x,y,smoothing):
 
     #raise NotImplementedError
 
-# deliverable 3.4
 def find_best_smoother(x_tr,y_tr,x_dv,y_dv,smoothers):
     '''
     find the smoothing value that gives the best accuracy on the dev data

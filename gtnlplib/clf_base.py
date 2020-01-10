@@ -6,10 +6,9 @@ def argmax(scores):
     items.sort()
     return items[np.argmax([i[1] for i in items])][0]
 
-# This will no longer work for our purposes since python3's max does not guarantee deterministic ordering
+# This will no longer work since python3's max does not guarantee deterministic ordering
 # argmax = lambda x : max(x.items(),key=lambda y : y[1])[0]
 
-# deliverable 2.1
 def make_feature_vector(base_features,label):
     '''
     take a counter of base features and a label; return a dict of features, corresponding to f(x,y)
@@ -27,9 +26,7 @@ def make_feature_vector(base_features,label):
     return feature_vector
 
     #use set(base_features) faster than base_features.keys()
-    #raise NotImplementedError
 
-# deliverable 2.2
 def predict(base_features,weights,labels):
     '''
     prediction function
@@ -71,8 +68,6 @@ def predict(base_features,weights,labels):
     remove: scores[label] = 0
     
     """
-
-    #raise NotImplementedError
     return argmax(scores),scores
 
 def predict_all(x,weights,labels):

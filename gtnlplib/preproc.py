@@ -3,7 +3,6 @@ from collections import Counter
 import pandas as pd
 import numpy as np
 
-# deliverable 1.1
 def bag_of_words(text):
     '''
     Count the number of word occurences for each document in the corpus
@@ -12,12 +11,10 @@ def bag_of_words(text):
     :returns: a Counter for a single document
     :rtype: Counter
     '''
-    
     #raise NotImplementedError
     text_list = text.split()
     return Counter(text_list)
 
-# deliverable 1.2
 def aggregate_counts(bags_of_words):
     '''
     Aggregate word counts for individual documents into a single bag of words representation
@@ -28,12 +25,10 @@ def aggregate_counts(bags_of_words):
     '''
 
     counts = Counter()
-    # YOUR CODE GOES HERE
     for bag in bags_of_words:
         counts += bag
     return counts
 
-# deliverable 1.3
 def compute_oov(bow1, bow2):
     '''
     Return a set of words that appears in bow1, but not bow2
@@ -49,7 +44,6 @@ def compute_oov(bow1, bow2):
 
     #raise NotImplementedError
 
-# deliverable 1.4
 def prune_vocabulary(training_counts, target_data, min_counts):
     '''
     prune target_data to only words that appear at least min_counts times in training_counts
@@ -84,7 +78,6 @@ def prune_vocabulary(training_counts, target_data, min_counts):
     #             del cnt[word]
     #raise NotImplementedError
 
-# deliverable 5.1
 def make_numpy(bags_of_words, vocab):
     '''
     Convert the bags of words into a 2D numpy array
@@ -104,7 +97,6 @@ def make_numpy(bags_of_words, vocab):
     return word_matrix
 
     #raise NotImplementedError
-### helper code
 
 def read_data(filename,label='Era',preprocessor=bag_of_words):
     df = pd.read_csv(filename)

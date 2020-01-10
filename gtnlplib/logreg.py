@@ -6,7 +6,6 @@ from scipy.special import logsumexp
 import matplotlib.pyplot as plt
 from torch import optim
 
-# deliverable 5.2
 def build_linear(X_tr, Y_tr):
     '''
     Build a linear model in torch
@@ -25,7 +24,6 @@ def build_linear(X_tr, Y_tr):
 
     return model
 
-# deliverable 5.3
 def log_softmax(scores):
     '''
     Compute the (log of the) softmax given the scores
@@ -41,7 +39,7 @@ def log_softmax(scores):
     softmax_result = scores - logsumexp(scores, axis=1, keepdims=1)
     #print(np.exp(softmax_result))
     return softmax_result
-# deliverable 5.4
+
 def nll_loss(logP, Y_tr):
     '''
     Compute the neg-log likelihood loss from log softmax probabilities, averaged across documents
@@ -108,7 +106,6 @@ def train_model(loss, model, X_tr_var, Y_tr_var,
     model.load_state_dict(checkpoint['state_dict'])
     
     return model, losses, accuracies
-
 
 
 def plot_results(losses, accuracies):

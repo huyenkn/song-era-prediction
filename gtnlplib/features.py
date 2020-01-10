@@ -2,7 +2,7 @@ from gtnlplib.constants import OFFSET
 import numpy as np
 import torch
 from heapq import nlargest
-# deliverable 6.1
+
 def get_top_features_for_label_numpy(weights,label,k=5):
     '''
     Return the five features with the highest weight for a given label.
@@ -24,7 +24,6 @@ def get_top_features_for_label_numpy(weights,label,k=5):
     top_features = sorted(features, key=lambda x: -x[1])[:k]
     return top_features
 
-# deliverable 6.2
 def get_top_features_for_label_torch(model,vocab,label_set,label,k=5):
     '''
     Return the five words with the highest weight for a given label.
@@ -51,7 +50,6 @@ def get_top_features_for_label_torch(model,vocab,label_set,label,k=5):
 
     #raise NotImplementedError
 
-# deliverable 7.1
 def get_token_type_ratio(counts):
     '''
     compute the ratio of tokens to types
@@ -66,7 +64,6 @@ def get_token_type_ratio(counts):
     
     #raise NotImplementedError
 
-# deliverable 7.2
 def concat_ttr_binned_features(data):
     '''
     Discretize your token-type ratio feature into bins.
