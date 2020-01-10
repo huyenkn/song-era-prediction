@@ -147,10 +147,6 @@ if __name__ == "__main__":
 		print('Validation file %s not exists!' % args.validation_file)
 		sys.exit(1)
 
-	# if not os.path.exists(args.test_file):
-	# 	print('Test file %s not exists!' % args.test_file)
-	# 	sys.exit(1)
-
 	y_tr, counts_tr, x_tr_pruned, vocab = preprocessing(args.train_file)
 	y_dv, counts_dv, x_dv_pruned, _ = preprocessing(args.validation_file)
 	labels = set(y_tr)
