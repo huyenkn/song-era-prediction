@@ -7,8 +7,8 @@ def make_parser():
 		help='Path to the training file (CSV only)')
 	parser.add_argument('-validation_file', type=str, required=True,
 		help='Path to the validation file (CSV only)')
-	parser.add_argument('-method', type=str, choices=['linear_classification', 'naive_bayes', 'perceptron', 'logistic_reg'], default='logistic_reg',
-		help='choose one method for training: linear_reg (linear classification), naive_bayes (naive bayes), perceptron, logistic_reg (logistic regression)')
+	parser.add_argument('-method', type=str, choices=['naive_bayes', 'perceptron', 'logistic_reg'], default='logistic_reg',
+		help='choose one method for training: naive_bayes (Naive Bayes), perceptron, logistic_reg (logistic regression)')
 
 	return parser
 
