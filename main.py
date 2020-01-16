@@ -15,13 +15,13 @@ import scipy as sp
 import torch
 from torch import optim
 
-from gtnlplib import preproc
-from gtnlplib import clf_base
-from gtnlplib import constants
-from gtnlplib import evaluation
-from gtnlplib import naive_bayes
-from gtnlplib import perceptron
-from gtnlplib import logreg
+from nlplib import preproc
+from nlplib import clf_base
+from nlplib import constants
+from nlplib import evaluation
+from nlplib import naive_bayes
+from nlplib import perceptron
+from nlplib import logreg
 
 import flags
 
@@ -51,6 +51,7 @@ def naive_bayes_method():
 	#theta_nb = naive_bayes.estimate_nb(x_tr_pruned, y_tr, best_smoother)
 	best_smoother, theta_nb = naive_bayes.find_best_smoother(
 		x_tr_pruned, y_tr, x_dv_pruned, y_dv, smoother_vals)
+	
 	#inference:
 	y_hat = clf_base.predict_all(x_dv_pruned, theta_nb, labels)
 
@@ -64,10 +65,10 @@ def naive_bayes_method():
 	#return evaluation.acc(y_hat_dv,y_dv)
 	return evaluation.acc(y_hat, y_dv)
 
-def perception_method():
+def perceptron_method():
 
 	print('Training', args.method, '...')
-
+	print(x_tr_pruned)
 	theta_perc,theta_perc_history = perceptron.estimate_perceptron(x_tr_pruned,y_tr,20)
 
 	#inference:
@@ -91,9 +92,17 @@ def logistic_reg_method():
 
 	Y_tr = np.array([label_set.index(y_i) for y_i in y_tr])
 	Y_dv = np.array([label_set.index(y_i) for y_i in y_dv])
+	print('X_tr', X_tr.shape, type(X_tr))
+	print('Y_tr', Y_tr.shape, type(Y_tr))
 
 	X_tr_var = torch.from_numpy(X_tr.astype(np.float32))
 	X_dv_var = torch.from_numpy(X_dv.astype(np.float32))
+
+	Y_tr_var = torch.from_numpy(Y_tr)
+	Y_dv_var = torch.from_numpy(Y_dv)
+
+	print('X_tr_var', X_tr_var[0])
+	print('Y_tr_var', Y_tr_var[0])
 
 	# build a new model with a fixed seed
 	torch.manual_seed(765)
@@ -102,8 +111,8 @@ def logistic_reg_method():
 
 	loss = torch.nn.NLLLoss()
 
-	Y_tr_var = torch.from_numpy(Y_tr)
-	Y_dv_var = torch.from_numpy(Y_dv)
+	#Y_tr_var = torch.from_numpy(Y_tr)
+	#Y_dv_var = torch.from_numpy(Y_dv)
 
 	#logP = model.forward(X_tr_var)
 	#logreg.nll_loss(logP.data.numpy(), Y_tr)
@@ -118,6 +127,7 @@ def logistic_reg_method():
 	
 	#inference: after training model, use the trained model to make prediction on an evaluation set.
 	_, Y_hat_dv = model_trained.forward(X_dv_var).max(dim=1)
+	print('Y_hat_dv', Y_hat_dv.shape)
 	print('Evaluating', args.method, '...')
 
 	Y_np = Y_hat_dv.data.numpy()
@@ -126,6 +136,7 @@ def logistic_reg_method():
 		Y_hat_dv_list.append(label_set[Y_np[i]])
 
 	Y_hat_dv_np = np.array(Y_hat_dv_list)
+	print(Y_hat_dv_np)
 
 	evaluation.write_predictions(Y_hat_dv_np, args.validation_file + '.preds')
 
@@ -155,7 +166,7 @@ if __name__ == "__main__":
 	if args.method == 'naive_bayes':
 		accuracy = naive_bayes_method()
 	elif args.method == 'perceptron':
-		accuracy = perception_method()
+		accuracy = perceptron_method()
 	else:
 		accuracy = logistic_reg_method()
 
