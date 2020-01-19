@@ -15,4 +15,4 @@ python main.py -train_file [training file's name] -validation_file [validation f
 method's name: choose one method for training: naive_bayes (Naive Bayes), perceptron, logistic_reg (logistic regression).
 
 ### Reference
-CS 4650 and 7650, Professor Jacob Eisenstein[https://github.com/jacobeisenstein/gt-nlp-class]
+CS 4650 and 7650, Professor [Jacob Eisenstein](https://github.com/jacobeisenstein/gt-nlp-class)
