@@ -13,3 +13,6 @@ The training and validation sets are Pandas DataFrames (read from CSV files, who
 python main.py -train_file [training file's name] -validation_file [validation file's name] -method [method's name]
 ```
 method's name: choose one method for training: naive_bayes (Naive Bayes), perceptron, logistic_reg (logistic regression).
+
+### Reference
+CS 4650 and 7650, Professor Jacob Eisenstein[https://github.com/jacobeisenstein/gt-nlp-class]
